@@ -17,10 +17,17 @@ class TransactionImport implements ToModel
         if (!isset($row[0]) == 'product_id') {
             return null;
         }
-        return new Transaction([
-            'product_id'    => $row[0],
-            'trx_date '     => $row[1],
-            'price'         => $row[2]
-        ]);
+        // return new Transaction([
+        //     'product_id'    => $row[0],
+        //     'trx_date '     => $row[1],
+        //     'price'         => $row[2]
+        // ]);
+
+        $transaction                       = new \App\Models\Transaction;
+        $transaction->product_id           = $row[0];
+        $transaction->trx_date             = $row[1];
+        $transaction->price                = $row[2];
+        $transaction->save();
+        return $transaction;
     }
 }
