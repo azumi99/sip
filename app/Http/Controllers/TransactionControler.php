@@ -41,7 +41,8 @@ class TransactionControler extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
-        $path = $request->file('file_excel')->getRealPath();
+        $path1 = $request->file('file_excel')->store('temp');
+        $path = storage_path('app') . '/' . $path1;
         $data = Excel::import(new TransactionImport, $path);
         Session::flash('messege', 'Data berhasil di import');
         return redirect()->route('transaction.index');
