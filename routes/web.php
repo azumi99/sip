@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('transaction/create', 'TransactionControler@Create')->name('transaction.create');
     Route::post('transaction/import', 'TransactionControler@import')->name('transaction.store');
-    Route::get('transaction', 'TransactionControler@index');
+    Route::get('transaction', 'TransactionControler@index')->name('transaction.index');
 });
 
 Auth::routes();
